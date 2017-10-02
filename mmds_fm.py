@@ -1,4 +1,3 @@
-#https://github.com/shngli/Data-Mining-Python/blob/master/Mining%20massive%20datasets/algorithms.ipynb
 
 # Decimal number to binary number
 def dec2bin(dec):
