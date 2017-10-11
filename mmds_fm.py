@@ -1,6 +1,4 @@
-# Decimal number to binary number
-def dec2bin(dec):
-    return bin(dec)[2:]
+
 
 
 # Count the number of trailing zeros
@@ -13,16 +11,13 @@ def trailing_zeros(b):
             return count
     return count
 
-    # Given R = max r(a), estimate number of distinct elements
+def mmds_fm(a, m):
+    """
+    a: Stream of eleemnts
+    m: Distant eles 
+    """
+    
 
-
-def distinct_els(r):
-    return 2 ** r
 
 
 if __name__ == '__main__':
-    print(trailing_zeros(dec2bin(12)))
-    # print(trailing_zeros(dec2bin(12)))
-    # print(trailing_zeros(dec2bin(4)))
-    # print(trailing_zeros(dec2bin(16)))
-    # print(trailing_zeros(dec2bin(1)))
