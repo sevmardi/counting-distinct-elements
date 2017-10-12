@@ -24,10 +24,7 @@ file_names = ['quotes_2008-08.txt',
               'quotes_2008-10.txt',
               'quotes_2008-11.txt',
               'quotes_2008-12.txt',
-              'quotes_2009-01.txt',
-              'quotes_2009-02.txt',
-              'quotes_2009-03.txt',
-              'quotes_2009-04.txt']
+              ]
 
 hash_function_1_tail_length = []
 hash_function_2_tail_length = []

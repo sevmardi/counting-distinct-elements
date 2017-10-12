@@ -1,0 +1,52 @@
+
+Abstract 
+---------
+These days billions of data is being streamed on daily basis which one needs to process and establish a good understanding of its platform to either generate new content for its users or establish a basic statistics for itself like how many users on daily basis; how much of those are unique; and what if one need to query the data with complex SQL queries? Having a lot of memory to calculate these incoming data is quite essential these days which might make life easier for some of us but what if one has few bytes of memory and yet willing to interact with the data, for instance, counting the elements as efficiently as possible. In this paper we are going to establish a good understanding for Probabilistic counting by Flajolet-Martin and LogLog counting by Durand-Flajolet. 
+
+
+Introduction
+------------
+In this paper our goal is to count the number of distinct elements in a data stream of size n. This could be done in number of ways but whether these theories or observations are efficient in time and space is entirely different topic. One of the ways to read the data in chunks this way you could establish a better understanding and perhaps speed. Another approach is to estimate the count in an unbiased way. In some of the approaches the count might result errors and so the percentage of accuracy goes down. We will implement and talk about Algorithms based on Philippe Flajolet theorem and Marianne Durand and whether we could count n size of data within limited memory resource.   
+
+Flajolet-Martin brief description 
+---------------------------------
+This algorithm was published during 1983-1985 by Flajolet and Martin. The principle idea behind this algorithm is to use hashing on the data coming in and output the cardinality (number of distinct elements) of that stream.
+
+The algorithm goes as following. Hash function maps h(x) each of the m elements to least log2 m bits; Count trailing zeros of each r(a) in its h(a); Record maximum number of trailing zeroes R you have seen so far. Do this for all the elements in the data stream and calculate the distinct elements. Aside from this the algorithm needs to maintain a bitmap table used to record the values of r(a), also to increase the process accuracy of the algorithm it uses stochastic averaging. So for instance one binary order of magnitude to O(1). The idea is to split the input stream into m groups = 2t which are determined by the first l bits of hashed values. In this case R is the average of each group and estimate the scale by m. The final formula to estimate the cardinality is m/φ 2Ave in which m is number of elements, φ is the correction factor and Ave is average of R. Based on number of researhcers the algorithm proves that it can be possible to estimate number of cardinality of large data sets using m words of size log2 N which comes close to 0.78/sqrt(m). 
+
+The drawback of this algorithm is that 2 R always results to a power of 2. Also, it is prone to bad luck, which will result in huge errors. The suggested workaround for these problems is to run several copies of the algorithm in parallel with dif-
+ferent groups of hash functions. You should then calculate the average of each group and then take the median of the averages as your result.
+
+
+Experiments 
+-----------
+We have done number of expermints and playing around the parameters, true values and m. For each value of m, we ran the code a number of times and calculated the average of the error rate. The formula we used for the calculation of the error rate is:
+
+RAE = trucount - estimated_count / true_count 
+
+We started with 100000 random numbers as a true count. We ran the code for values of m starting from 2 to 252 with increments of 5. Pretty much ploted different values of m and number of other input values. In the expermental folder you find the files in which we worked with real datasets. Using the computers at the university we ran the code using much more memory with true value of 500000 (just to avoid any crushing on our laptops) in this case value of m was starting 80 up untill 580 with 5 as an increasing value. 
+
+Results
+-------
+show plots 
+
+
+
+
+LogLog Counting (Durand-Flajolet)
+---------------------------------
+
+Description and Theoretical Properties
+-------------------------------------------
+After the first algorithm Flajolet and Durand realised that they could make the memory consumption of the algorithm even better and so they came up with LogLog Counting algorithm. The LogLog algorithm is pretty much similar to the Probabilistic Counting algorithm.
+
+
+
+
+
+
+
+
+
+
+

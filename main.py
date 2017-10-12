@@ -53,7 +53,7 @@ def loglog_counting(values, k):
 
     for value in values:
         # h = hash(value)
-        h =  value
+        h = value
         bucket = h & (num_buckets - 1)
         bucket_hash = h >> k
         max_zeros[bucket] = max(max_zeros[bucket], trailing_zeroes(bucket_hash))
