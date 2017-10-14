@@ -1,12 +1,12 @@
 
 Abstract 
 ---------
-These days billions of data is being streamed on daily basis which one needs to process and establish a good understanding of its platform to either generate new content for its users or establish a basic statistics for itself like how many users on daily basis; how much of those are unique; and what if one need to query the data with complex SQL queries? Having a lot of memory to calculate these incoming data is quite essential these days which might make life easier for some of us but what if one has few bytes of memory and yet willing to interact with the data, for instance, counting the elements as efficiently as possible. In this paper we are going to establish a good understanding for Probabilistic counting by Flajolet-Martin and LogLog counting by Durand-Flajolet. 
+These days billions of data is being streamed on daily basis which one needs to process and establish a good understanding of its platform to either generate new content for its users or establish a basic statistics for itself like how many users on daily basis; how much of those are unique; and what if one need to query the data with complex SQL queries? Having a lot of memory to calculate these incoming data is quite essential these days which might make life easier for some of us but what if one has few bytes of memory and yet willing to interact with the data, for instance, counting the elements as efficiently as possible. In this paper I am going to establish a good understanding for Probabilistic counting by Flajolet-Martin and LogLog counting by Durand-Flajolet. 
 
 
 Introduction
 ------------
-In this paper our goal is to count the number of distinct elements in a data stream of size n. This could be done in number of ways but whether these theories or observations are efficient in time and space is entirely different topic. One of the ways to read the data in chunks this way you could establish a better understanding and perhaps speed. Another approach is to estimate the count in an unbiased way. In some of the approaches the count might result errors and so the percentage of accuracy goes down. We will implement and talk about Algorithms based on Philippe Flajolet theorem and Marianne Durand and whether we could count n size of data within limited memory resource.   
+In this paper our goal is to count the number of distinct elements in a data stream of size n. This could be done in number of ways but whether these theories or observations are efficient in time and space is entirely different topic. One of the ways to read the data in chunks this way you could establish a better understanding and perhaps speed. Another approach is to estimate the count in an unbiased way. In some of the approaches the count might result errors and so the percentage of accuracy goes down. I will implement and talk about Algorithms based on Philippe Flajolet theorem and Marianne Durand and whether I could count n size of data within limited memory resource.   
 
 Flajolet-Martin brief description 
 ---------------------------------
@@ -20,11 +20,11 @@ ferent groups of hash functions. You should then calculate the average of each g
 
 Experiments 
 -----------
-We have done number of expermints and playing around the parameters, true values and m. For each value of m, we ran the code a number of times and calculated the average of the error rate. The formula we used for the calculation of the error rate is:
+I have done number of expermints and playing around the parameters, true values and m. For each value of m, I ran the code a number of times and calculated the average of the error rate. The formula I used for the calculation of the error rate is:
 
 RAE = trucount - estimated_count / true_count 
 
-We started with 100000 random numbers as a true count. We ran the code for values of m starting from 2 to 252 with increments of 5. Pretty much ploted different values of m and number of other input values. In the expermental folder you find the files in which we worked with real datasets. Using the computers at the university we ran the code using much more memory with true value of 500000 (just to avoid any crushing on our laptops) in this case value of m was starting 80 up untill 580 with 5 as an increasing value. 
+I started with 100000 random numbers as a true count. I ran the code for values of m starting from 2 to 252 with increments of 5. Pretty much ploted different values of m and number of other input values. In the expermental folder you find the files in which I worked with real datasets. Using the computers at the university I ran the code using much more memory with true value of 500000 (just to avoid any crushing on our laptops) in this case value of m was starting 80 up untill 580 with 5 as an increasing value. 
 
 Results
 -------
@@ -38,9 +38,18 @@ LogLog Counting (Durand-Flajolet)
 
 Description and Theoretical Properties
 -------------------------------------------
-After the first algorithm Flajolet and Durand realised that they could make the memory consumption of the algorithm even better and so they came up with LogLog Counting algorithm. The LogLog algorithm is pretty much similar to the Probabilistic Counting algorithm.
+After the first algorithm Flajolet and Durand came together again to refine their latest work and as such that the thoughts were to could make the memory consumption of the algorithm even better and so they came up with LogLog Counting algorithm. The LogLog algorithm is pretty much similar to the Probabilistic Counting algorithm - some say its just a improvment.
+
+LogLog has pretty much the same principle and so it uses hash function as well on the input data to output a binary numbers, it then takes the binary and finds the cardinaliuty estimates  using only a very small amount of auxiliary memory, namely m memory units, where a memory unit, a “small byte”, comprises close to log log N max bits, with N max an a priori upperbound on cardinalities. It also uses the same principles of stochastic averaging as the Probabilistic Counting algorithm and uses a correction factor φ of 0.79402.
+The final formula for the estimate of the cardinality is then mφ2 Ave in which m is number of elements, φ is the correction factor and Ave is average of R. The algorithm proves that it is possible to estimate the cardinality of large
+multisets (up to several billion distinct elements) using m short bytes 
+
+α = 1.30 / seq(m)
 
 
+
+Experiment
+-----------
 
 
 
