@@ -6,7 +6,7 @@ These days billions of data is being streamed on daily basis which one needs to 
 
 Introduction
 ------------
-In this paper our goal is to count the number of distinct elements in a data stream of size n. This could be done in number of ways but whether these theories or observations are efficient in time and space is entirely different topic. One of the ways to read the data in chunks this way you could establish a better understanding and perhaps speed. Another approach is to estimate the count in an unbiased way. In some of the approaches the count might result errors and so the percentage of accuracy goes down. I will implement and talk about Algorithms based on Philippe Flajolet theorem and Marianne Durand and whether I could count n size of data within limited memory resource.   
+In this paper my goal is to count the number of distinct elements in a data stream of size n. This could be done in number of ways but whether these theories or observations are efficient in time and space is entirely different topic. One of the ways to read the data in chunks this way you could establish a better understanding and perhaps speed. Another approach is to estimate the count in an unbiased way. In some of the approaches the count might result errors and so the percentage of accuracy goes down. I will implement and talk about Algorithms based on Philippe Flajolet theorem and Marianne Durand and whether I could count n size of data within limited memory resource.   
 
 Flajolet-Martin brief description 
 ---------------------------------
@@ -38,11 +38,11 @@ LogLog Counting (Durand-Flajolet)
 
 Description and Theoretical Properties
 -------------------------------------------
-After the first algorithm Flajolet and Durand came together again to refine their latest work and as such that the thoughts were to could make the memory consumption of the algorithm even better and so they came up with LogLog Counting algorithm. The LogLog algorithm is pretty much similar to the Probabilistic Counting algorithm - some say its just a improvment.
+After the first algorithm Flajolet and Durand came together again to refine their latest work and as such that the thoughts were to could make the memory consumption of the algorithm even better and so they came up with LogLog Counting algorithm. The LogLog algorithm is pretty much similar to the Probabilistic Counting algorithm - some say its just a improvement.
 
-LogLog has pretty much the same principle and so it uses hash function as well on the input data to output a binary numbers, it then takes the binary and finds the cardinaliuty estimates  using only a very small amount of auxiliary memory, namely m memory units, where a memory unit, a “small byte”, comprises close to log log N max bits, with N max an a priori upperbound on cardinalities. It also uses the same principles of stochastic averaging as the Probabilistic Counting algorithm and uses a correction factor φ of 0.79402.
-The final formula for the estimate of the cardinality is then mφ2 Ave in which m is number of elements, φ is the correction factor and Ave is average of R. The algorithm proves that it is possible to estimate the cardinality of large
-multisets (up to several billion distinct elements) using m short bytes 
+LogLog has pretty much the same principle and so it uses hash function as well on the input data to output a binary numbers, it then takes the binary and finds the cardinality estimates  using only a very small amount of auxiliary memory, namely m memory units, where a memory unit, a “small byte”, comprises close to log log N max bits, with N max an a priori upper bound on cardinalities. It also uses the same principles of stochastic averaging as the Probabilistic Counting algorithm and uses a correction factor φ of 0.79402.
+
+The final formula for the estimate of the cardinality is then mφ2 Ave in which m is number of elements, φ is the correction factor and Ave is average of R. The algorithm proves that it is possible to estimate the cardinality of large multi sets (up to several billion distinct elements) using m short bytes 
 
 α = 1.30 / seq(m)
 
@@ -50,11 +50,27 @@ multisets (up to several billion distinct elements) using m short bytes
 
 Experiment
 -----------
+My experiments were different in m and amount data as input. To get some visual representation I have done some plotting just to show the difference between the algorithms. For each change in m I ran the code at least twice and on two different machines just to get some ideas. The formula used for the calculation of the average of the error rate is: 
+	
+						RAE = true_count - estimated_count / true_count 
+At the beginning I have used random function to generate either 100000 or 500000 random numbers. Those two numbers were the 
+
+Reuslts
+--------
+
+show plots  and explain those 
 
 
+Conclusions
+-----------
+The trick regarding Probabilistic Counting algorithm is within the error rate and the amount of memory used. The higher the amount the memory used the lower the error rate which this could be seen in the graph. 
 
-
-
+For LogLog Counting Algorithm lies within the prober range of the number of groups m, the more the groups is divided (more memory), the lower the rate will be as well. Both algorithms has been proven by number of experts in this field. In my expermints I was able to discover that once the data set has been excessively divided,the error rate stops decreasing and starts increasing. 
+According to the papers, the Probabilistic Counting algorithm is slightly more
+accurate than the LogLog Counting one, as it uses the bitmap method to keep
+track of the trailing zeros. However, when it comes to memory consumption,
+the memory units of LogLog Counting are smaller by about a factor of 3-5, de-
+pending on implementation in comparison to the Probabilistic Counting.
 
 
 
