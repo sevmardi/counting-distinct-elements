@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import helpers.TrailingZeros as trailing_zeroes
 
 
-random.seed(12)
+random.seed(5)
 
 
 def first_zero(array):
@@ -41,13 +41,14 @@ if __name__ == '__main__':
     for i in range(len(errors)):
         m[i] = 100 + 5 * i
         avg_error = [0] * 5
+        true_count = 100000
         for r in range(len(avg_error)):
-            avg_error[r] = np.abs(100000 - probabilistic_counting([random.randint(0, 2 ** 32) for i in range(100000)], m[i])) / 100000
-            # avg_error[r] = np.abs(100000 - probabilistic_counting([np.random.randint(0,2,100000,37)], m[i])) / 100000
+            avg_error[r] = np.abs(true_count - probabilistic_counting([random.randint(0, 2 ** 32) for i in range(true_count)], m[i])) / true_count
+              # avg_error[r] = np.abs(500000 - probabilistic_counting([random.random() for j in range(500000)], m[i])) / (500000)
         errors[i] = np.mean(avg_error)
     print(errors)
     print(m)
     plt.plot(m, errors)
-    plt.ylabel("Error rate")
-    plt.xlabel('m')
+    plt.ylabel("RAE")
+    plt.xlabel('M')
     plt.show()

@@ -1,5 +1,3 @@
-
-
 def trailing_zeroes(s):
     if s == 0:
         return 32
