@@ -19,13 +19,10 @@ def count_trailing_zeros(s):
     return count
 
 
-file_names = ['quotes_2008-08.txt',
-              'quotes_2008-09.txt',
-              'quotes_2008-10.txt',
-              'quotes_2008-11.txt',
-              'quotes_2008-12.txt',
-              ]
-
+file_names = ['snap_data/quotes_2008-08.txt',
+              'snap_data/quotes_2008-09.txt',
+                
+              
 hash_function_1_tail_length = []
 hash_function_2_tail_length = []
 hash_function_3_tail_length = []

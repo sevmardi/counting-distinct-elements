@@ -41,7 +41,7 @@ if __name__ == '__main__':
     for i in range(len(errors)):
         m[i] = 100 + 5 * i
         avg_error = [0] * 5
-        true_count = 100000
+        true_count = 200000
         for r in range(len(avg_error)):
             avg_error[r] = np.abs(true_count - probabilistic_counting([random.randint(0, 2 ** 32) for i in range(true_count)], m[i])) / true_count
               # avg_error[r] = np.abs(500000 - probabilistic_counting([random.random() for j in range(500000)], m[i])) / (500000)

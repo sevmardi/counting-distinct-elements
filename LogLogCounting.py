@@ -30,7 +30,7 @@ if __name__ == '__main__':
     for i in range(len(errors)):
         m[i] = 3 + i
         avg_error = [0] * 20
-        true_count = 500000
+        true_count = 100000
         for j in range(len(avg_error)):
             avg_error[j] = np.abs(true_count - loglog_counting([random.randint(0, 2 ** 32) for i in range(true_count)], m[i])) / true_count
             # avg_error[r] = np.abs(100000 - loglog_counting([random.random() for j in range(100000)], m[i]))/(100000)
