@@ -7,7 +7,7 @@ import helpers.TrailingZeros as trailing_zeroes
 random.seed(5)
 
 
-def first_zero(array):
+def zeros(array):
     for i in range(len(array)):
         if array[i] == 0:
             return i
@@ -23,7 +23,7 @@ def probabilistic_counting(values, m):
         num = random.randint(0, m - 1)
         bitmap[num][trailing_zeroes.trailing_zeroes(k)] = 1
     for i in range(0, m):
-        count[i] = first_zero(bitmap[i])
+        count[i] = zeros(bitmap[i])
     # Below is causing to run somehow slower
     # for i in range(len(bitmap)):
     #     if bitmap.any():

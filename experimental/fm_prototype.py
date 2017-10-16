@@ -6,6 +6,9 @@ import jhashcode
 import mmh3
 import math
 
+# In order to run this you might need to download the snap data which I used in order to find the cardinality. Files are too big to include it. 
+# https://snap.stanford.edu/data/memetracker9.html
+
 
 def count_trailing_zeros(s):
     s = str(s)
@@ -20,15 +23,23 @@ def count_trailing_zeros(s):
 
 
 file_names = ['snap_data/quotes_2008-08.txt',
-              'snap_data/quotes_2008-09.txt',
-                
-              
+              'snap_data/quotes_2008-09.txt',]
+
+
 hash_function_1_tail_length = []
 hash_function_2_tail_length = []
 hash_function_3_tail_length = []
 hash_function_4_tail_length = []
 
 for i in file_names:
+    try:
+        import mmh3
+        import jhashcode
+        from cityhash import CityHash32
+        from spooky import hash32
+    except ImportError as e:
+        print(e)
+
     fp = open(i, 'r')
     for line in fp:
         temp = line.split('\t')

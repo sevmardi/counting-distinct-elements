@@ -1,0 +1,6 @@
+numpy==1.13.1
+mmh3==2.4
+matplotlib==2.0.2
+cityhash==0.2.3.post9
+spooky==2.0.0
+spooky==0.4
