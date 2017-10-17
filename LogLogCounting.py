@@ -19,20 +19,23 @@ def loglog_counting(values, k):
         h = value
         bucket = h & (num_buckets - 1)
         bucket_hash = h >> k
-        max_zeros[bucket] = max(max_zeros[bucket], trailing_zeroes.trailing_zeroes(bucket_hash))
+        max_zeros[bucket] = max(
+            max_zeros[bucket], trailing_zeroes.trailing_zeroes(bucket_hash))
 
-    return 2 ** (float(sum(max_zeros)) / num_buckets) * num_buckets * 0.79402  # 2^x * number of buckets where x is the mean of all buckets
+    # 2^x * number of buckets where x is the mean of all buckets
+    return 2 ** (float(sum(max_zeros)) / num_buckets) * num_buckets * 0.79402
 
 if __name__ == '__main__':
     errors = [0] * 15
     m = [0] * 15
-    
+
     for i in range(len(errors)):
         m[i] = 3 + i
         avg_error = [0] * 20
         true_count = 100000
         for j in range(len(avg_error)):
-            avg_error[j] = np.abs(true_count - loglog_counting([random.randint(0, 2 ** 32) for i in range(true_count)], m[i])) / true_count
+            avg_error[j] = np.abs(true_count - loglog_counting(
+                [random.randint(0, 2 ** 32) for i in range(true_count)], m[i])) / true_count
             # avg_error[r] = np.abs(100000 - loglog_counting([random.random() for j in range(100000)], m[i]))/(100000)
             # avg_error[r] = np.abs(100000 - loglog_counting([np.random.randint(0, 2 ** 32) for i in range(100000)], m[i])) / 100000
         errors[i] = np.mean(avg_error)
@@ -42,4 +45,3 @@ if __name__ == '__main__':
     plt.ylabel("Error rate")
     plt.xlabel("m")
     plt.show()
-
