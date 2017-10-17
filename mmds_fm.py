@@ -19,7 +19,7 @@ def mmds_fm(values, k):
 	bucket =  0
 	for i in np.arange(len(values) - 1):
 		s = values[i]
-		r = count_tailing_zeros(values[i])
+		r = count_tailing_zeros(s)
 
 		if i % bucket_len == 0:
 			bucket+=1
@@ -27,4 +27,3 @@ def mmds_fm(values, k):
 	calculate_mean = np.array([2 ** np.mean(r[:,1] for i in np.arange(bucket_len))])
 
 	return np.mean(calculate_mean)
-
